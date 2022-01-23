@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "three.js@r119",
+      "destination": "wwwroot/lib/three.js/"
+    },
+    {
+      "library": "vanta@0.5.21",
+      "destination": "wwwroot/lib/vanta/"
+    },
+    {
+      "library": "uikit@3.10.1",
+      "destination": "wwwroot/lib/uikit/"
+    }
+  ]
+}

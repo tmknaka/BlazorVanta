@@ -1,0 +1,46 @@
+﻿@page "/clock"
+
+@using BlazorVanta.Models;
+
+
+@inject IJSRuntime JsRuntime;
+
+<div id="your-element-selector" style="height: 100vh; width: 100%; text-align: center;">
+
+   <div style="height: 100%;display: flex; align-items: center;justify-content: center" >
+       <p id="myid"></p>
+   </div>
+</div>
+
+
+
+@code{
+    MyClock? clock;
+    string time = "";
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // clock = new MyClock();
+        // clock.CurrentDateTime.Subscribe(d =>
+        //{
+        //    time = d.ToString("HH:mm:ss");
+        //    this.StateHasChanged();
+        //});
+        await JsRuntime.InvokeVoidAsync("blazorExtensions.Clock");
+        await base.OnInitializedAsync();
+    }
+
+    void clicked()
+    {
+        time = DateTime.Now.ToString("HH:mm:ss");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JsRuntime.InvokeVoidAsync("blazorExtensions.Set");
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}
+
